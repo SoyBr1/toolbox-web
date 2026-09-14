@@ -1,124 +1,308 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Herramientas online gratuitas, rápidas y fáciles de usar.">
-    <title>ToolBox — Herramientas Online Gratis</title>
-    <link rel="stylesheet" href="style.css">
+
+```
+<meta name="description" content="ToolBox: herramientas online gratuitas para cálculos, conversiones, texto, PDF e imágenes.">
+<meta name="keywords" content="herramientas online, calculadora, porcentaje, edad, regla de tres, contador de palabras, herramientas gratis">
+
+<title>ToolBox — Herramientas Online Gratis</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
-<header>
-    <div class="logo">Tool<span>Box</span></div>
-    <nav>
-        <a href="#herramientas">Herramientas</a>
-        <a href="#sobre">Sobre nosotros</a>
-    </nav>
+<header class="header">
+    <a href="#" class="logo">Tool<span>Box</span></a>
+
+```
+<nav>
+    <a href="#herramientas">Herramientas</a>
+    <a href="#sobre">Sobre nosotros</a>
+</nav>
+```
+
 </header>
 
 <main>
 
+```
 <section class="hero">
     <div class="badge">100% GRATIS</div>
-    <h1>Herramientas online.<br><span>Sin complicaciones.</span></h1>
-    <p>Calculadoras, conversores y herramientas útiles directamente desde tu navegador.</p>
-    <a class="button" href="#herramientas">Explorar herramientas</a>
+
+    <h1>
+        Herramientas online.<br>
+        <span>Sin complicaciones.</span>
+    </h1>
+
+    <p>
+        Calculadoras, conversores y herramientas útiles,
+        rápidas y gratuitas directamente desde tu navegador.
+    </p>
+
+    <a href="#herramientas" class="main-button">
+        Explorar herramientas
+    </a>
 </section>
 
+
 <section id="herramientas" class="tools-section">
-    <h2>Herramientas</h2>
-    <p class="subtitle">Elige una herramienta para empezar.</p>
+
+    <div class="section-heading">
+        <span>TOOLBOX</span>
+        <h2>Herramientas gratuitas</h2>
+        <p>Elige una herramienta y empieza a utilizarla.</p>
+    </div>
 
     <div class="tools-grid">
 
-        <a class="tool-card" href="#porcentaje">
-            <div class="icon">%</div>
+        <a href="#calculadora-porcentaje" class="tool-card">
+            <div class="tool-icon">%</div>
             <h3>Calculadora de porcentajes</h3>
-            <p>Calcula porcentajes de forma rápida.</p>
+            <p>Calcula rápidamente un porcentaje de cualquier número.</p>
         </a>
 
-        <a class="tool-card" href="#edad">
-            <div class="icon">🎂</div>
+        <a href="#calculadora-edad" class="tool-card">
+            <div class="tool-icon">AGE</div>
             <h3>Calculadora de edad</h3>
-            <p>Calcula tu edad exacta.</p>
+            <p>Calcula tu edad a partir de tu fecha de nacimiento.</p>
         </a>
 
-        <a class="tool-card" href="#regla">
-            <div class="icon">⚖️</div>
+        <a href="#regla-de-tres" class="tool-card">
+            <div class="tool-icon">123</div>
             <h3>Regla de tres</h3>
-            <p>Resuelve reglas de tres fácilmente.</p>
+            <p>Resuelve reglas de tres de forma rápida y sencilla.</p>
         </a>
 
-        <a class="tool-card" href="#palabras">
-            <div class="icon">Aa</div>
+        <a href="#contador-palabras" class="tool-card">
+            <div class="tool-icon">Aa</div>
             <h3>Contador de palabras</h3>
-            <p>Cuenta palabras y caracteres.</p>
+            <p>Cuenta palabras, caracteres y espacios de cualquier texto.</p>
         </a>
 
     </div>
+
 </section>
 
-<section id="porcentaje" class="calculator">
-    <h2>Calculadora de porcentajes</h2>
 
-    <input id="porcentaje" type="number" placeholder="Porcentaje (%)">
-    <input id="numero" type="number" placeholder="Número">
+<section id="calculadora-porcentaje" class="tool-section">
 
-    <button onclick="calcularPorcentaje()">Calcular</button>
+    <div class="tool-container">
 
-    <div id="resultadoPorcentaje" class="result"></div>
-</section>
+        <span class="tool-label">CALCULADORA</span>
 
-<section id="edad" class="calculator">
-    <h2>Calculadora de edad</h2>
+        <h2>Calculadora de porcentajes</h2>
 
-    <input id="fechaNacimiento" type="date">
+        <p>
+            Introduce un porcentaje y un número para calcular el resultado.
+        </p>
 
-    <button onclick="calcularEdad()">Calcular edad</button>
+        <div class="calculator">
 
-    <div id="resultadoEdad" class="result"></div>
-</section>
+            <input
+                id="percentage"
+                type="number"
+                placeholder="Porcentaje (%)"
+            >
 
-<section id="regla" class="calculator">
-    <h2>Regla de tres</h2>
+            <input
+                id="percentage-number"
+                type="number"
+                placeholder="Número"
+            >
 
-    <input id="a" type="number" placeholder="A">
-    <input id="b" type="number" placeholder="B">
-    <input id="c" type="number" placeholder="C">
+            <button onclick="calculatePercentage()">
+                Calcular
+            </button>
 
-    <button onclick="reglaDeTres()">Calcular</button>
+            <div id="percentage-result" class="result"></div>
 
-    <div id="resultadoRegla" class="result"></div>
-</section>
+        </div>
 
-<section id="palabras" class="calculator">
-    <h2>Contador de palabras</h2>
-
-    <textarea id="texto" placeholder="Escribe o pega tu texto aquí..."></textarea>
-
-    <div class="counter">
-        <span id="palabrasResultado">0 palabras</span>
-        <span id="caracteresResultado">0 caracteres</span>
     </div>
+
 </section>
+
+
+<section id="calculadora-edad" class="tool-section alternate">
+
+    <div class="tool-container">
+
+        <span class="tool-label">CALCULADORA</span>
+
+        <h2>Calculadora de edad</h2>
+
+        <p>
+            Introduce tu fecha de nacimiento y calcula tu edad.
+        </p>
+
+        <div class="calculator">
+
+            <input
+                id="birth-date"
+                type="date"
+            >
+
+            <button onclick="calculateAge()">
+                Calcular edad
+            </button>
+
+            <div id="age-result" class="result"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="regla-de-tres" class="tool-section">
+
+    <div class="tool-container">
+
+        <span class="tool-label">MATEMÁTICAS</span>
+
+        <h2>Regla de tres</h2>
+
+        <p>
+            Calcula el valor desconocido de una proporción.
+        </p>
+
+        <div class="calculator">
+
+            <div class="three-columns">
+
+                <input
+                    id="rule-a"
+                    type="number"
+                    placeholder="A"
+                >
+
+                <input
+                    id="rule-b"
+                    type="number"
+                    placeholder="B"
+                >
+
+                <input
+                    id="rule-c"
+                    type="number"
+                    placeholder="C"
+                >
+
+            </div>
+
+            <div class="formula">
+                A → B<br>
+                C → X
+            </div>
+
+            <button onclick="calculateRuleOfThree()">
+                Calcular
+            </button>
+
+            <div id="rule-result" class="result"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="contador-palabras" class="tool-section alternate">
+
+    <div class="tool-container">
+
+        <span class="tool-label">TEXTO</span>
+
+        <h2>Contador de palabras</h2>
+
+        <p>
+            Escribe o pega un texto para contar palabras y caracteres.
+        </p>
+
+        <div class="calculator">
+
+            <textarea
+                id="text-counter"
+                placeholder="Escribe o pega tu texto aquí..."
+            ></textarea>
+
+            <div class="counter">
+
+                <div>
+                    <strong id="word-count">0</strong>
+                    <span>palabras</span>
+                </div>
+
+                <div>
+                    <strong id="character-count">0</strong>
+                    <span>caracteres</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 <section id="sobre" class="about">
-    <h2>Herramientas sencillas para todos</h2>
-    <p>
-        ToolBox reúne herramientas online gratuitas diseñadas para resolver
-        tareas cotidianas de forma rápida y sencilla.
-    </p>
+
+    <div class="about-container">
+
+        <span class="tool-label">SOBRE TOOLBOX</span>
+
+        <h2>Herramientas sencillas para todos.</h2>
+
+        <p>
+            ToolBox reúne herramientas online gratuitas diseñadas
+            para resolver tareas cotidianas de forma rápida,
+            sencilla y sin instalaciones.
+        </p>
+
+    </div>
+
 </section>
+```
 
 </main>
 
 <footer>
-    <p>© 2026 ToolBox</p>
-    <a href="#">Privacidad</a>
+
+```
+<div class="footer-content">
+
+    <div>
+        <div class="logo">Tool<span>Box</span></div>
+        <p>Herramientas online gratuitas.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="#herramientas">Herramientas</a>
+        <a href="#sobre">Sobre nosotros</a>
+        <a href="#">Privacidad</a>
+    </div>
+
+</div>
+
+<div class="copyright">
+    © 2026 ToolBox. Todos los derechos reservados.
+</div>
+```
+
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>

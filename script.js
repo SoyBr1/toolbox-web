@@ -1,75 +1,176 @@
-function calcularPorcentaje() {
-    const porcentaje = Number(document.getElementById("porcentaje").value);
-    const numero = Number(document.getElementById("numero").value);
+function calculatePercentage() {
 
-    if (!porcentaje || !numero) {
-        document.getElementById("resultadoPorcentaje").textContent =
-            "Introduce ambos valores.";
-        return;
-    }
+```
+const percentage =
+    Number(document.getElementById("percentage").value);
 
-    const resultado = (porcentaje * numero) / 100;
+const number =
+    Number(document.getElementById("percentage-number").value);
 
-    document.getElementById("resultadoPorcentaje").textContent =
-        `${porcentaje}% de ${numero} = ${resultado}`;
+const result =
+    document.getElementById("percentage-result");
+
+
+if (
+    document.getElementById("percentage").value === "" ||
+    document.getElementById("percentage-number").value === ""
+) {
+
+    result.textContent =
+        "Introduce el porcentaje y el número.";
+
+    return;
 }
 
-function calcularEdad() {
-    const fecha = document.getElementById("fechaNacimiento").value;
 
-    if (!fecha) {
-        document.getElementById("resultadoEdad").textContent =
-            "Selecciona tu fecha de nacimiento.";
-        return;
-    }
+const calculation =
+    (percentage * number) / 100;
 
-    const nacimiento = new Date(fecha);
-    const hoy = new Date();
 
-    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+result.textContent =
+    `${percentage}% de ${number} = ${calculation}`;
+```
 
-    const mes = hoy.getMonth() - nacimiento.getMonth();
-
-    if (
-        mes < 0 ||
-        (mes === 0 && hoy.getDate() < nacimiento.getDate())
-    ) {
-        edad--;
-    }
-
-    document.getElementById("resultadoEdad").textContent =
-        `Tienes ${edad} años.`;
 }
 
-function reglaDeTres() {
-    const a = Number(document.getElementById("a").value);
-    const b = Number(document.getElementById("b").value);
-    const c = Number(document.getElementById("c").value);
+function calculateAge() {
 
-    if (!a || !b || !c) {
-        document.getElementById("resultadoRegla").textContent =
-            "Introduce los tres valores.";
-        return;
-    }
+```
+const dateValue =
+    document.getElementById("birth-date").value;
 
-    const resultado = (b * c) / a;
+const result =
+    document.getElementById("age-result");
 
-    document.getElementById("resultadoRegla").textContent =
-        `Resultado: ${resultado}`;
+
+if (!dateValue) {
+
+    result.textContent =
+        "Selecciona tu fecha de nacimiento.";
+
+    return;
 }
 
-const texto = document.getElementById("texto");
 
-texto.addEventListener("input", () => {
-    const contenido = texto.value;
+const birthDate =
+    new Date(dateValue + "T00:00:00");
 
-    const palabras = contenido.trim()
-        ? contenido.trim().split(/\s+/).length
-        : 0;
+const today =
+    new Date();
 
-    document.getElementById("palabrasResultado").textContent =
-        `${palabras} palabras`;
 
-    document.getElementById("caracteresResultado").textContent =
-        `${contenido.length} caracteres`;
+let years =
+    today.getFullYear() -
+    birthDate.getFullYear();
+
+
+const monthDifference =
+    today.getMonth() -
+    birthDate.getMonth();
+
+
+if (
+    monthDifference < 0 ||
+    (
+        monthDifference === 0 &&
+        today.getDate() < birthDate.getDate()
+    )
+) {
+
+    years--;
+
+}
+
+
+if (years < 0) {
+
+    result.textContent =
+        "La fecha introducida no es válida.";
+
+    return;
+}
+
+
+result.textContent =
+    `Tienes ${years} años.`;
+```
+
+}
+
+function calculateRuleOfThree() {
+
+```
+const a =
+    Number(document.getElementById("rule-a").value);
+
+const b =
+    Number(document.getElementById("rule-b").value);
+
+const c =
+    Number(document.getElementById("rule-c").value);
+
+const result =
+    document.getElementById("rule-result");
+
+
+if (
+    document.getElementById("rule-a").value === "" ||
+    document.getElementById("rule-b").value === "" ||
+    document.getElementById("rule-c").value === ""
+) {
+
+    result.textContent =
+        "Introduce los tres valores.";
+
+    return;
+}
+
+
+if (a === 0) {
+
+    result.textContent =
+        "A no puede ser 0.";
+
+    return;
+}
+
+
+const x =
+    (b * c) / a;
+
+
+result.textContent =
+    `X = ${x}`;
+```
+
+}
+
+const textCounter =
+document.getElementById("text-counter");
+
+textCounter.addEventListener("input", function () {
+
+```
+const text =
+    textCounter.value;
+
+
+const words =
+    text.trim() === ""
+        ? 0
+        : text.trim().split(/\s+/).length;
+
+
+const characters =
+    text.length;
+
+
+document.getElementById("word-count").textContent =
+    words;
+
+
+document.getElementById("character-count").textContent =
+    characters;
+```
+
 });

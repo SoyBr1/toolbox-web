@@ -56,6 +56,25 @@ const tools = {
 
 const categories = ["Todas","Estudiantes","Calculadoras","PDF","Imágenes","Texto","Conversores","Finanzas","Generadores","Fecha","Matemáticas","Desarrolladores","IA"];
 
+function mountElasticMesh(){
+  if(!window.ElasticMesh || !window.React || !window.ReactDOM || !window.ReactDOM.createRoot) return;
+  const textHost=document.getElementById("mesh-text");
+  const logoHost=document.getElementById("mesh-logo");
+  if(textHost && !textHost.dataset.mounted){
+    window.ReactDOM.createRoot(textHost).render(window.React.createElement(window.ElasticMesh,{
+      text:"Squish",material:"balloon",color:"#3b5bff",inflate:1,stiffness:0.5,wobble:0.6,theme:"dark"
+    }));
+    textHost.dataset.mounted="true";
+  }
+  if(logoHost && !logoHost.dataset.mounted){
+    window.ReactDOM.createRoot(logoHost).render(window.React.createElement(window.ElasticMesh,{
+      src:"logo.svg",material:"chrome",imageColors:false,theme:"dark"
+    }));
+    logoHost.dataset.mounted="true";
+  }
+}
+window.addEventListener("elasticmesh-ready",mountElasticMesh);
+
 function home(){
   document.title="ToolBox — Herramientas online gratis";
   app.innerHTML=`<section class="hero">
@@ -65,8 +84,16 @@ function home(){
     <div class="search"><input id="search" placeholder="¿Qué necesitas hacer? Ej.: calcular nota, comprimir imagen..."></div>
     <div class="home-cats">${categories.slice(1).map(c=>`<a class="cat" href="#/herramientas?cat=${encodeURIComponent(c)}">${c}</a>`).join("")}</div>
   </section>
+  <section class="mesh-showcase">
+    <div class="mesh-heading"><span class="label">NUEVO · INTERACTIVO</span><h2>Un toque de elasticidad.</h2><p>Aprieta, arrastra y juega con las formas. Prueba el efecto con texto o con el logo de ToolBox.</p></div>
+    <div class="mesh-grid">
+      <div class="mesh-card"><div class="mesh-demo" id="mesh-text"></div><span>01 / BALLOON · SQUISH</span></div>
+      <div class="mesh-card"><div class="mesh-demo" id="mesh-logo"></div><span>02 / CHROME · TOOLBOX</span></div>
+    </div>
+  </section>
   <section class="section"><span class="label">MÁS ÚTILES</span><h2>Herramientas populares</h2><p class="muted">Pensadas para tareas reales y rápidas.</p><div class="grid">${["nota","nota-aprobar","imagen-comprimir","imagen-pdf","qr","palabras","media","ia"].map(card).join("")}</div></section>
   <section class="about"><span class="label">TOOLBOX</span><h2>Una caja de herramientas, no una página de relleno.</h2><p>Cada herramienta tiene su propia página para que podamos crear contenido útil alrededor de búsquedas concretas y mejorar el posicionamiento con el tiempo.</p></section>`;
+  mountElasticMesh();
   document.getElementById("search").addEventListener("input",e=>{
     const q=e.target.value.toLowerCase().trim();
     if(q.length>2){const key=Object.keys(tools).find(k=>(tools[k].name+" "+tools[k].desc).toLowerCase().includes(q));if(key) location.hash="#/"+key;}
